@@ -1,12 +1,18 @@
+// const Qs = require('query-string');
+
 const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const usersList = document.getElementById('users');
 
-
 // get username and room  from url
-const {username,room} = Qs.parse(location.search, {ignoreQueryPrefix: true});
+const arr1 = window.location.search.split('&');
+const username = arr1[0].split('=')[1]
+const room = arr1[1].split('=')[1]
 
+// const {username,room} = Qs.parse(location.search, {ignoreQueryPrefix: true});
+
+console.log(username, room)
 const socket = io();
 
 // join chat room
