@@ -5,20 +5,12 @@ const usersList = document.getElementById('users');
 
 
 // get username and room  from url
-const {
-    username,
-    room
-} = Qs.parse(location.search, {
-    ignoreQueryPrefix: true
-});
+const {username,room} = Qs.parse(location.search, {ignoreQueryPrefix: true});
 
 const socket = io();
 
 // join chat room
-socket.emit('joinRoom', {
-    username,
-    room
-});
+socket.emit('joinRoom', {username,room});
 
 // get room and users
 socket.on('roomUsers', ({room, users})=>{
@@ -30,7 +22,6 @@ socket.on('roomUsers', ({room, users})=>{
 
 // message from server
 socket.on('message', message => {
-    console.log(message);
     outputMessage(message);
 
     // scroll down
